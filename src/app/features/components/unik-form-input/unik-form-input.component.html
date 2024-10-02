@@ -1,0 +1,16 @@
+<div class="form-input">
+  <input
+    type="text"
+    pInputText
+    [placeholder]="name"
+  />
+  <div
+    *ngIf="formCtrl && formCtrl.invalid && (formCtrl.dirty || formCtrl.touched)"
+    class="alert"
+  >
+    <div *ngIf="formCtrl.errors?.['required']">Name is required.</div>
+    <div *ngIf="formCtrl.errors?.['minlength']">
+      Name must be at least 4 characters long.
+    </div>
+  </div>
+</div>

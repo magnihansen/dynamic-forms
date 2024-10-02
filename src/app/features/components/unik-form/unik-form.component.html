@@ -1,0 +1,19 @@
+<div class="form">
+  <form
+    *ngIf="myFormGroup$"
+    [formGroup]="myFormGroup$"
+    [name]="name"
+  >
+    <ng-content select="unik-form-input"></ng-content>
+    <ng-content select="unik-form-submit"></ng-content>
+  </form>
+</div>
+<br />
+<br />
+Messages:
+<div
+  *ngFor="let m of computedMessages()"
+  style="display: block; width: 100%;"
+>
+  {{ m }}
+</div>
