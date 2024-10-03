@@ -1,9 +1,26 @@
 <h1>Dynamic Forms!</h1>
-<unik-form name="basic">
+<unik-form
+  name="basic"
+  (submitted)="submitted($event)"
+>
   <unik-form-input name="username"></unik-form-input>
-  <unik-form-input name="phone"></unik-form-input>
-  <unik-form-input name="mobile"></unik-form-input>
-  <unik-form-submit submitText="Godkend" (submitted)="submitted()"></unik-form-submit>
+
+  <unik-form-input
+    name="phone"
+    [minLength]="20"
+  ></unik-form-input>
+
+  <!-- <global-address-form></global-address-form> -->
+
+  <unik-form-checkbox
+    name="isadmin"
+    text="Is admin"
+  ></unik-form-checkbox>
+
+  <unik-form-submit
+    submitText="Godkend"
+    (submitted)="submitted($event)"
+  ></unik-form-submit>
 </unik-form>
 
 <br />

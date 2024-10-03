@@ -18,8 +18,8 @@ export class AppComponent {
     this.myFormGroup$ = this.fs.formGroups;
   }
 
-  submitted(): void {
-    this.fs.update();
-    console.log('Form submitted');
+  submitted(form: any): void {
+    this.fs.updateValueAndValidity();
+    console.log('Form submitted', form);
   }
 }

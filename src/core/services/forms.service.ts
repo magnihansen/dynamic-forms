@@ -13,7 +13,6 @@ import {
 })
 export class FormsService {
   public formGroups: FormGroup = new FormGroup({});
-  public isFormValid = false;
   public messages = signal<string[]>([]);
   private _formName: string = '';
   private _formControls: FormControl[] = [];
@@ -31,7 +30,7 @@ export class FormsService {
     validators: ValidatorFn[],
     updateOn: 'blur' | 'change' = 'blur'
   ): void {
-    let fc = this.fb.control('', { updateOn });
+    let fc = this.fb.control('', { updateOn: updateOn });
 
     if (validators) {
       fc.setValidators(validators);
@@ -50,8 +49,12 @@ export class FormsService {
     this.addMessage(`Form ${this._formName} generated`);
   }
 
-  public update(): void {
+  public updateValueAndValidity(): void {
     this.formGroups.updateValueAndValidity();
+  }
+
+  public isFormValid(): boolean {
+    return this.formGroups.valid;
   }
 
   public resetForm(): void {

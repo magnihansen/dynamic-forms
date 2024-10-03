@@ -4,6 +4,7 @@ import { UnikFormComponent } from "./features/components/unik-form/unik-form.com
 import { UnikFormInputComponent } from "./features/components/unik-form-input/unik-form-input.component";
 import { AppComponent } from './app.component';
 import { UnikFormSubmitComponent } from './features/components/unik-form-submit/unik-form-submit.component';
+import { UnikFormCheckboxComponent } from "./features/components/unik-form-checkbox/unik-form-checkbox.component";
 
 @NgModule({
   declarations: [ AppComponent ],
@@ -11,12 +12,14 @@ import { UnikFormSubmitComponent } from './features/components/unik-form-submit/
     BrowserModule,
     UnikFormComponent,
     UnikFormInputComponent,
-    UnikFormSubmitComponent
-  ],
+    UnikFormSubmitComponent,
+    UnikFormCheckboxComponent,
+],
   exports: [
     UnikFormComponent,
     UnikFormInputComponent,
     UnikFormSubmitComponent,
+    UnikFormCheckboxComponent,
   ],
   bootstrap: [AppComponent]
 })

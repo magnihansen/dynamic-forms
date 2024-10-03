@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, computed, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, computed, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormsService } from '../../../../core/services/forms.service';
 import { UnikFormGroupDirective } from '../../../../core/directives/unik-form.directive';
@@ -9,16 +9,6 @@ import { CommonModule } from '@angular/common';
   selector: 'unik-form',
   standalone: true,
   templateUrl: './unik-form.component.html',
-  hostDirectives: [
-    {
-      directive: UnikFormGroupDirective,
-      inputs: ['name'],
-    },
-    {
-      directive: UnikFormFieldDirective,
-      inputs: ['formControlName'],
-    },
-  ],
   providers: [FormsService],
   imports: [
     CommonModule, 
@@ -31,23 +21,28 @@ import { CommonModule } from '@angular/common';
 export class UnikFormComponent<T> implements OnInit, AfterViewInit {
   @Input({ required: true }) name!: string;
   @Input() formModel!: T;
+  @Output() submitted = new EventEmitter<T>();
   
   public myFormGroup$: FormGroup = new FormGroup({});
 
-  constructor(private formsService: FormsService) {
-    this.myFormGroup$ = this.formsService.formGroups;
+  constructor(private fs: FormsService) {
+    this.myFormGroup$ = this.fs.formGroups;
   }
   
   ngOnInit(): void {
-    this.formsService.addGroup(this.name);
+    this.fs.addGroup(this.name);
   }
 
   ngAfterViewInit(): void {
-    console.log(this.formsService.formGroups);
-    this.formsService.addMessage(JSON.stringify(this.formsService.formGroups.getRawValue()));
+    console.log(this.fs.formGroups);
+    this.fs.addMessage(JSON.stringify(this.fs.formGroups.getRawValue()));
+  }
+
+  submitForm(form: T): void {
+    this.submitted.emit(form);
   }
 
   public computedMessages = computed(() => {
-    return this.formsService.messages();
+    return this.fs.messages();
   });
 }

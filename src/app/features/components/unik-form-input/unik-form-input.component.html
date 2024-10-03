@@ -3,14 +3,14 @@
     type="text"
     pInputText
     [placeholder]="name"
+    [(ngModel)]="value"
   />
-  <div
-    *ngIf="formCtrl && formCtrl.invalid && (formCtrl.dirty || formCtrl.touched)"
-    class="alert"
-  >
-    <div *ngIf="formCtrl.errors?.['required']">Name is required.</div>
-    <div *ngIf="formCtrl.errors?.['minlength']">
-      Name must be at least 4 characters long.
-    </div>
-  </div>
+  @if (formCtrl$) {
+  @if (formCtrl$.hasError('required')) {
+  <p class="">{{name}} is required.</p>
+  }
+  @if (formCtrl$.hasError('minlength')) {
+  <p class="input-error">{{name}} is too short.</p>
+  }
+  }
 </div>
