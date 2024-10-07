@@ -3,11 +3,12 @@
   name="basic"
   (submitted)="submitted($event)"
 >
-  <unik-form-input name="username"></unik-form-input>
+  <unik-form-input name="username" [required]="true"></unik-form-input>
 
   <unik-form-input
     name="phone"
-    [minLength]="20"
+    [minLength]="10"
+    [disabled]="true"
   ></unik-form-input>
 
   <!-- <global-address-form></global-address-form> -->

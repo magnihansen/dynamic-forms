@@ -1,10 +1,17 @@
 <div class="form-input">
   <input
-    type="text"
-    pInputText
-    [placeholder]="name"
-    [(ngModel)]="value"
+  [id]="'text-id-' + name"
+  type="text"
+  pInputText
+  [placeholder]="name"
+  [minlength]="minLength"
+  [required]="required"
+  [disabled]="disabled"
+  [(ngModel)]="value"
   />
+  @if (required) {
+    <label for="{{'text-id-' + name}}" class="input-error" title="{{name + ' is required'}}">*</label>
+  }
   @if (formCtrl$) {
   @if (formCtrl$.hasError('required')) {
   <p class="">{{name}} is required.</p>

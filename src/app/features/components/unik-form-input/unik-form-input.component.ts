@@ -17,7 +17,9 @@ export class UnikFormInputComponent implements OnInit {
   @Input() updateOn: 'blur' | 'change' = 'blur';
   @Input({ required: true }) name!: string;
   @Input() required = false;
+  @Input() disabled = false;
   @Input() minLength: number | null = null;
+
   @Input()
   get value() {
     return this._value;
