@@ -18,6 +18,6 @@ export class UnikFormGroupDirective implements AfterViewInit {
   constructor(private formsService: FormsService) {}
 
   ngAfterViewInit(): void {
-    this.formsService.generateFormGroup();
+    // this.formsService.generateFormGroup();
   }
 }

@@ -14,12 +14,11 @@ export class AppComponent {
   public myFormGroup$: FormGroup = new FormGroup({});
   public formModel: FormModel = {} as FormModel;
 
-  constructor(private fs: FormsService) {
-    this.myFormGroup$ = this.fs.formGroups;
-  }
+  constructor(private fs: FormsService) { }
 
   submitted(form: any): void {
     this.fs.updateValueAndValidity();
     console.log('Form submitted', form);
+    console.log('Form model', this.formModel);
   }
 }

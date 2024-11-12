@@ -2,8 +2,8 @@
   <form
     *ngIf="myFormGroup$"
     [formGroup]="myFormGroup$"
-    [name]="name"
-    (onsubmit)="submitForm(formModel)"
+    [name]="name()"
+    (onsubmit)="submitForm()"
   >
     <ng-content select="unik-form-input,unik-form-checkbox"></ng-content>
     <ng-content select="unik-form-submit"></ng-content>

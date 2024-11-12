@@ -12,10 +12,9 @@ import {
   providedIn: 'root',
 })
 export class FormsService {
-  public formGroups: FormGroup = new FormGroup({});
+  public formGroups: any = signal<FormGroup<any>>;
   public messages = signal<string[]>([]);
   private _formName: string = '';
-  private _formControls: FormControl[] = [];
 
   constructor(private fb: NonNullableFormBuilder) { }
 
@@ -42,12 +41,12 @@ export class FormsService {
     this.addMessage(`Form control ${formControlName} added`);
   }
 
-  public generateFormGroup(): void {
-    this._formControls.forEach((fc: FormControl, index) => {
-      this.formGroups.controls[index] = fc;
-    });
-    this.addMessage(`Form ${this._formName} generated`);
-  }
+  // public generateFormGroup(): void {
+  //   this._formControls.forEach((fc: FormControl, index) => {
+  //     this.formGroups$.controls[index] = fc;
+  //   });
+  //   this.addMessage(`Form ${this._formName} generated`);
+  // }
 
   public updateValueAndValidity(): void {
     this.formGroups.updateValueAndValidity();
